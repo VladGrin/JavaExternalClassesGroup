@@ -1,10 +1,11 @@
-package com.epam.tasks.homework1.gameTwentyOne.opponentcardsgenerator.impl;
+package com.epam.tasks.homework1.gameTwentyOne.cardshandler.impl;
 
 import com.epam.tasks.homework1.gameTwentyOne.cardprovider.CardProvider;
 import com.epam.tasks.homework1.gameTwentyOne.cardprovider.impl.CardProviderImpl;
-import com.epam.tasks.homework1.gameTwentyOne.opponentcardsgenerator.OpponentCardGenerator;
+import com.epam.tasks.homework1.gameTwentyOne.cardshandler.OpponentCardHandler;
 
-public class OpponentCardGeneratorImpl implements OpponentCardGenerator {
+public class OpponentCardHandlerImpl implements OpponentCardHandler {
+
     private CardProvider cardProvider = new CardProviderImpl();
 
     @Override

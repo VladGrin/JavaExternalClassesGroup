@@ -12,7 +12,7 @@ public class OftenRepeatedSymbol {
 
     public static void main(String[] args) {
 
-        String string = "";
+        String string = "dthxfthtxdhdxthtdzhdtjhtdxhjdtzhzdrhzdrhxdrh  aaaaaaaaaaaaaaaaa";
         try {
             char oftenRepeatedSymbol = symbolFinder.getOftenRepeatedSymbol(string);
             System.out.println("symbol : '" + oftenRepeatedSymbol + "'");
@@ -73,14 +73,18 @@ class SecondSymbolFinder implements SymbolFinder {
                 .sorted()
                 .collect(Collectors.toList());
 
-        String stringFromChar = "";
+        StringBuilder stringFromChar = new StringBuilder();
         for (int i = 0; i < sortedCharacters.size() - 1; i++) {
             Character temp = sortedCharacters.get(i);
-            stringFromChar += temp.equals(sortedCharacters.get(i+1)) ? temp.toString() : temp.toString() + "5";
+            if (temp.equals(sortedCharacters.get(i+1))){
+                stringFromChar.append(temp);
+            } else {
+                stringFromChar.append(temp + "5");
+            }
         }
-        stringFromChar += sortedCharacters.get(sortedCharacters.size() - 1);
+        stringFromChar.append(sortedCharacters.get(sortedCharacters.size() - 1));
 
-        String[] stringsRepeatedSymbols = stringFromChar.split("5");
+        String[] stringsRepeatedSymbols = stringFromChar.toString().split("5");
         Integer longerString = Arrays.stream(stringsRepeatedSymbols)
                 .map(x -> x.length())
                 .max(Integer::compare)
