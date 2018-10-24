@@ -1,19 +1,23 @@
 package com.epam.tasks.homework1.gameTwentyOne.cardshandler.impl;
 
 import com.epam.tasks.homework1.gameTwentyOne.cardprovider.CardProvider;
-import com.epam.tasks.homework1.gameTwentyOne.cardprovider.impl.CardProviderImpl;
 import com.epam.tasks.homework1.gameTwentyOne.cardshandler.UserCardHandler;
-import com.epam.tasks.homework1.gameTwentyOne.keyhandler.KeyHandler;
-import com.epam.tasks.homework1.gameTwentyOne.keyhandler.impl.KeyHandlerImpl;
+import com.epam.tasks.homework1.gameTwentyOne.inputhandler.InputHandler;
 import com.epam.tasks.homework1.gameTwentyOne.model.Card;
-
-import java.util.Scanner;
 
 public class UserCardHandlerImpl implements UserCardHandler {
 
-    private Scanner scanner = new Scanner(System.in);
-    private CardProvider cardProvider = new CardProviderImpl();
-    private KeyHandler keyHandler = new KeyHandlerImpl();
+    private InputHandler inputHandler;
+    private CardProvider cardProvider;
+
+    public UserCardHandlerImpl(InputHandler inputHandler, CardProvider cardProvider) {
+        this.inputHandler = inputHandler;
+        this.cardProvider = cardProvider;
+    }
+
+    public int calculator(int userCount, Card newCard){
+         return userCount + newCard.getValue();
+    }
 
     @Override
     public int getResultByUser() {
@@ -24,18 +28,12 @@ public class UserCardHandlerImpl implements UserCardHandler {
         while (isGoOn) {
             Card card = cardProvider.getCard();
             System.out.println("Your card : '" + card.getName() + "'");
-            userCount += card.getValue();
+            userCount = calculator(userCount, card);
             if (userCount > 21) {
                 break;
             }
-
-            String data;
-            do {
-                data = scanner.nextLine();
-            } while (!keyHandler.dataEntryValidator(data));
-            isGoOn = keyHandler.getResultByPressingKey(data.charAt(0));
+            isGoOn = inputHandler.isGoOn();
         }
-
         return userCount;
     }
 }

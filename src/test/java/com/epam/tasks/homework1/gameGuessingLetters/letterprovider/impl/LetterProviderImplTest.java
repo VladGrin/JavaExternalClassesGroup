@@ -1,15 +1,14 @@
 package com.epam.tasks.homework1.gameGuessingLetters.letterprovider.impl;
 
 import com.epam.tasks.homework1.gameGuessingLetters.letterprovider.LetterProvider;
-import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LetterProviderImplTest {
 
     @Test
-    public void getLetter() {
+    public void getLetterTrue() {
 
         LetterProvider letterProvider = new LetterProviderImpl();
 
@@ -17,7 +16,7 @@ public class LetterProviderImplTest {
         boolean result = false;
 
         char letter = letterProvider.getLetter();
-        if ('a' <= letter && 'z' >= letter) {
+        if (letter >= 'a' && letter <= 'z') {
             result = true;
         }
 

@@ -1,6 +1,6 @@
-package com.epam.tasks.homework1.gameTwentyOne.keyhandler.impl;
+package com.epam.tasks.homework1.gameTwentyOne.inputhandler.impl;
 
-import com.epam.tasks.homework1.gameTwentyOne.keyhandler.KeyHandler;
+import com.epam.tasks.homework1.gameTwentyOne.inputhandler.KeyHandler;
 
 import java.util.regex.Pattern;
 
