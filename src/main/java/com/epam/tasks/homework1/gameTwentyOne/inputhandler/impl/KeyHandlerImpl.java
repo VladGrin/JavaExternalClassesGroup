@@ -7,12 +7,12 @@ import java.util.regex.Pattern;
 public class KeyHandlerImpl implements KeyHandler {
     @Override
     public boolean dataEntryValidator(String data) {
-        boolean isValid = Pattern.compile("^[g|s]{1}$").matcher(String.valueOf(data)).find();
-        if (!isValid) {
-            System.out.println("You have entered incorrect data. Try again.");
-            return false;
+        boolean isValid = Pattern.compile("^(g|s)$").matcher(String.valueOf(data)).find();
+        if (isValid) {
+            return true;
         }
-        return true;
+        System.out.println("You have entered incorrect data. Try again.");
+        return false;
     }
 
 

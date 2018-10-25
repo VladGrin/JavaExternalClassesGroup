@@ -2,9 +2,8 @@ package com.epam.tasks.homework1.gameTwentyOne.inputhandler.impl;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class KeyHandlerImplTest {
 
@@ -12,39 +11,53 @@ public class KeyHandlerImplTest {
     public void dataEntryValidatorTrue() {
         KeyHandlerImpl handler = new KeyHandlerImpl();
 
-        boolean answer = true;
         boolean result = handler.dataEntryValidator("g");
-
-        assertEquals(answer, result);
+        assertTrue(result);
+        result = handler.dataEntryValidator("s");
+        assertTrue(result);
     }
 
     @Test
     public void dataEntryValidatorFalse() {
         KeyHandlerImpl handler = new KeyHandlerImpl();
+        for (int i = 0; i < 100000; i++) {
 
-        boolean answer = false;
-        boolean result = handler.dataEntryValidator("kh");
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int j = 0; j < (int)(Math.random() * 20); j++) {
+                stringBuilder.append((char) (Math.random() * 256));
+            }
+            String string = stringBuilder.toString().trim();
 
-        assertEquals(answer, result);
+            if(string.equals("g") || string.equals("s")){
+                continue;
+            }
+
+            boolean result = handler.dataEntryValidator(string);
+            assertFalse(result);
+        }
     }
 
     @Test
     public void getResultByPressingKeyTrue() {
         KeyHandlerImpl handler = new KeyHandlerImpl();
 
-        boolean answer = true;
         boolean result = handler.getResultByPressingKey(103);
 
-        assertEquals(answer, result);
+        assertTrue(result);
     }
 
     @Test
     public void getResultByPressingKeyFalse() {
         KeyHandlerImpl handler = new KeyHandlerImpl();
 
-        boolean answer = false;
-        boolean result = handler.getResultByPressingKey(100);
+        for (int i = 0; i < 1000; i++) {
+            int number = (int) (Math.random() * 256);
+            if (number == 103) {
+                continue;
+            }
+            boolean result = handler.getResultByPressingKey(number);
 
-        assertEquals(answer, result);
+            assertFalse(result);
+        }
     }
 }

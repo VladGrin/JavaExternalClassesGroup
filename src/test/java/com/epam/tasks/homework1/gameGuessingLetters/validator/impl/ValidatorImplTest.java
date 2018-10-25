@@ -13,37 +13,29 @@ public class ValidatorImplTest {
     public void validateTrue() {
         Validator validator = new ValidatorImpl();
 
-        boolean answer = true;
-        boolean result = validator.validate("h");
+        for (int i = 0; i < 1000; i++) {
 
-        assertEquals(answer, result);
+            boolean answer = true;
+
+            char ch = (char) (Math.random() * 26 + 97);
+            boolean result = validator.validate(String.valueOf(ch));
+
+            assertEquals(answer, result);
+        }
     }
 
     @Test(expected = InputMismatchException.class)
     public void validateFalse() {
         Validator validator = new ValidatorImpl();
 
-        validator.validate("9");
+        for (int i = 0; i < 1000; i++) {
+
+            char ch = (char) (Math.random() * 256);
+            if (ch >= 'a' && ch <= 'z'){
+                continue;
+            }
+            validator.validate(String.valueOf(ch));
+        }
     }
 
-    @Test(expected = InputMismatchException.class)
-    public void validateLength() {
-        Validator validator = new ValidatorImpl();
-
-        validator.validate("9");
-    }
-
-    @Test(expected = InputMismatchException.class)
-    public void validateNull() {
-        Validator validator = new ValidatorImpl();
-
-        validator.validate("9");
-    }
-
-    @Test(expected = InputMismatchException.class)
-    public void validateEmpty() {
-        Validator validator = new ValidatorImpl();
-
-        validator.validate("9");
-    }
 }

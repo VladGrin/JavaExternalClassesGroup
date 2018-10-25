@@ -12,10 +12,12 @@ public class CardProviderImplTest {
     public void getCard() {
         CardProvider cardProvider = new CardProviderImpl();
 
-        boolean answer = true;
-        boolean result = cardProvider.getCard() instanceof Card;
+        for (int i = 0; i < 1000; i++) {
 
-        assertEquals(answer, result);
+            boolean result = cardProvider.getCard() instanceof Card;
+
+            assertTrue(result);
+        }
 
     }
 }

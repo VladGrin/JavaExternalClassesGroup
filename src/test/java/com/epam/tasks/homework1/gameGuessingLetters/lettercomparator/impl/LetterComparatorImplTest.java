@@ -12,25 +12,31 @@ public class LetterComparatorImplTest {
 
         LetterComparator letterComparator = new LetterComparatorImpl();
 
-        boolean answer = true;
-        char randomChar = 'g';
-        char userChar = 'g';
+        for (int i = 0; i < 1000; i++) {
 
-        boolean value = letterComparator.isRightLetter(randomChar, userChar);
+            char symbol = (char) (Math.random() * 97 + 26);
+            char randomChar = symbol;
+            char userChar = symbol;
 
-        assertEquals(answer, value);
+            boolean value = letterComparator.isRightLetter(randomChar, userChar);
+
+            assertTrue(value);
+        }
     }
 
     @Test
     public void isRightLetterFalse() {
         LetterComparator letterComparator = new LetterComparatorImpl();
 
-        boolean answer = false;
-        char randomChar = 'g';
-        char userChar = 'n';
-
-        boolean value = letterComparator.isRightLetter(randomChar, userChar);
-
-        assertEquals(answer, value);
+        for (int i = 0; i < 10000; i++) {
+            boolean answer = false;
+            char randomChar = 'a';
+            char userChar = (char) (Math.random() * 256);
+            if (userChar == 'a') {
+                continue;
+            }
+            boolean value = letterComparator.isRightLetter(randomChar, userChar);
+            assertEquals(answer, value);
+        }
     }
 }

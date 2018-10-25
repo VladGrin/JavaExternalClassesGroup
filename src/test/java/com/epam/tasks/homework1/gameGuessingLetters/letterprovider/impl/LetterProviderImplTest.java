@@ -12,14 +12,17 @@ public class LetterProviderImplTest {
 
         LetterProvider letterProvider = new LetterProviderImpl();
 
-        boolean answer = true;
-        boolean result = false;
+        for (int i = 0; i < 1000; i++) {
 
-        char letter = letterProvider.getLetter();
-        if (letter >= 'a' && letter <= 'z') {
-            result = true;
+            boolean answer = true;
+            boolean result = false;
+
+            char letter = letterProvider.getLetter();
+            if (letter >= 'a' && letter <= 'z') {
+                result = true;
+            }
+
+            assertEquals(answer, result);
         }
-
-        assertEquals(answer, result);
     }
 }
